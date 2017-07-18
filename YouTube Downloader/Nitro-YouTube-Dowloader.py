@@ -1,4 +1,18 @@
-#for Windows - Nitro YouTube Downloader
+'''
+    Nitro YouTube Downloader
+    Made by: Sandeep Gupta ( IIIT Jabalpur )
+    Instructions to use: Download modules urllib, pytube and bs4 in python and run this script. Default Download path is -> Download/Nitro-YouTube-Downloader.
+
+    What's the purpose of this ?
+    As many times we need to download YouTube videos and playlists. Downloading a YouTube video is not that tough, but downloading a playist sounds some-what because
+    in that we need to goto download link and click on download for individual video. So this script can come handy and it is very easy to use.
+
+    Developer's :
+    I tried my best to have the variable names descriptive, but still if you have any doubt comment on Git.
+    Used urlopen to request url, BeautifulSoup to scrap it and pytube python library to download video from YouTube.
+
+    NOTE: Script Crashes Whenever false Input are fed into it.
+'''
 
 import os
 from urllib.request import urlopen
@@ -26,8 +40,7 @@ def download(url):
     print ('Your Video will be Downloaded in ~/Downloads/Nitro-YouTube-Downloader')
     download_folder = os.path.expanduser("~")+"/Downloads/"
     path = os.system('if not exist "download_folder/Nitro-YouTube-Downloader" mkdir download_folder/Nitro-YouTube-Downloader')
-    
-    #video.download(path)
+    video.download(path)
     
 
 def search():
@@ -54,9 +67,9 @@ def search():
     if(download_choice in links):
         URL = "http://www.youtube.com%s"%links[download_choice]
         download(URL)
-        print ('You have Downloaded Video Effortlessly ! \n')
+        print ('Congrats :-) You have Downloaded Video Effortlessly! \n')
     else:
-        print ('\n Wrong Choice')
+        print ('\n Wrong Choice \n')
         search()
     
 
@@ -66,25 +79,24 @@ def Playlist(playlist):
     page_soup = soup(page,'lxml')
     count = 0
     video_quality = quality()
-    for i in page_soup.find_all('td',{'class':'pl-video-title'}):
+    for i in page_soup.find_all('div',{'class':'content-wrapper'}):
         count+=1
-    print ('There are',count,'number of videos in Playlist to be downloaded')
-    print ('Enter Location Complete Path - ')
+    print ('There are',count,'number of videos in Playlist to be downloaded \n')
+    print ('Enter Complete Path - ')
     path = input()
     os.system('cls')
     Downloading=0
-    for i in page_soup.find_all('td',{'class':'pl-video-title'}):
+    for i in page_soup.find_all('div',{'class':'content-wrapper'}):
         Downloading += 1
         print ('Downloaded - ',end=' ')
-        print (int((Downloading-1)/count)*100,'%')
+        print (int(((Downloading-1)*100)/count),'%')
         video = i.a["href"]
         URL = "http://www.youtube.com%s"%video
         yt = YouTube(URL)
         video = yt.filter('mp4')[video_quality]
-
-        #video.download(path)
-        
-    
+        print ('Downloading - %s',i.a["title"])
+        video.download(path)
+    print ('Congrats :-) You have Downloaded Playlist Effortlessly! \n')
     
 def type():
     while(True):
@@ -118,7 +130,7 @@ def type():
         
 
 def main():       
-    print ("************* Nitro YouTube Downloader ************")
+    print ("*************** Nitro YouTube Downloader **************")
     type()
 
 main()
