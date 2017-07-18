@@ -20,10 +20,11 @@ from bs4 import BeautifulSoup as soup
 from pytube import YouTube
 
 def quality():
-    print ('Video Quality -')
+    print ('Video Quality -\n')
     print ('Enter 1 for Simple 360p')
     print ('Enter 2 for Baseline 480p')
-    print ('Enter 3 for High 720p')
+    print ('Enter 3 for High 720p\n')
+    print ('*****-> ',end='')
     video_quality = int(input())
     if (video_quality == 1):
         viedo_quality = 0
@@ -37,9 +38,12 @@ def download(url):
     yt = YouTube(url)
     video_quality = quality()
     video = yt.filter('mp4')[video_quality]
-    print ('Your Video will be Downloaded in ~/Downloads/Nitro-YouTube-Downloader')
-    download_folder = os.path.expanduser("~")+"/Downloads/"
-    path = os.system('if not exist "download_folder/Nitro-YouTube-Downloader" mkdir download_folder/Nitro-YouTube-Downloader')
+    print ('Where do you want to Download - Enter Complete path : ',end='')
+    path = input()
+    #print ('Your Video will be Downloaded in ~/Downloads/Nitro-YouTube-Downloader')
+    #download_folder = os.path.expanduser("~")+"/Downloads/"
+    #path = os.system('if not exist "download_folder/Nitro-YouTube-Downloader" mkdir download_folder/Nitro-YouTube-Downloader')
+    print ('Downloading...')
     video.download(path)
     
 
@@ -62,12 +66,12 @@ def search():
         if(count >= 15):
             break
 
-    print ('Enter the number to be Downloaded - ',end=' ')
+    print ('\nEnter the number to be Downloaded - ',end=' ')
     download_choice = int(input())
     if(download_choice in links):
         URL = "http://www.youtube.com%s"%links[download_choice]
         download(URL)
-        print ('Congrats :-) You have Downloaded Video Effortlessly! \n')
+        print ('Congrats :-) You have Downloaded the Video Effortlessly! \n')
     else:
         print ('\n Wrong Choice \n')
         search()
@@ -82,7 +86,7 @@ def Playlist(playlist):
     for i in page_soup.find_all('div',{'class':'content-wrapper'}):
         count+=1
     print ('There are',count,'number of videos in Playlist to be downloaded \n')
-    print ('Enter Complete Path - ')
+    print ('Enter Complete Path - ',end=' ')
     path = input()
     os.system('cls')
     Downloading=0
@@ -94,17 +98,17 @@ def Playlist(playlist):
         URL = "http://www.youtube.com%s"%video
         yt = YouTube(URL)
         video = yt.filter('mp4')[video_quality]
-        print ('Downloading - %s',i.a["title"])
+        print ('Downloading - ',i.a["title"])
         video.download(path)
-    print ('Congrats :-) You have Downloaded Playlist Effortlessly! \n')
+    print ('Congrats :-) You have Downloaded the Playlist Effortlessly! \n')
     
 def type():
     while(True):
         out = True
-        print ('Enter 1 for SEARCH')
-        print ('Enter 2 for Download via link')
-        print ('Enter 3 for Download Playlist')
-        print ('Enter 4 for EXIT')
+        print ('Enter 1 to SEARCH and DOWNLOAD')
+        print ('Enter 2 to DOWNLOAD via YOUTUBE LINK')
+        print ('Enter 3 to DOWNLOAD PLAYLIST')
+        print ('Enter 4 to EXIT')
         print ('\n')
         print ('Your Choice - ',end=' ')
         choice = int(input())
@@ -114,6 +118,7 @@ def type():
             print ("Paste your Video URL here: ",end=' ')
             video_url = input()
             download(video_url)
+            print ('Congrats :-) You have Downloaded the Video Effortlessly! \n')
         elif(choice == 3):
             print("Paste your Playlist URL here: ",end=' ')
             playlist = input()
