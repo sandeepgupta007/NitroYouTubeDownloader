@@ -6,4 +6,8 @@ Step - 1: Download Anaconda for 3.5 python ( Python >= 3.0) or download python m
 Step - 2: Clone the repo and Double click on the Nitro-YouTube-Dowloader.py file or run the script. 
 Step - 3: Proceed as guided.
 
+
+Known Issues : It downloads only 20[MAX] videos from a playlist and crashes whenever there is a file name mis-match.
+
 Hope this program helps! 
+
