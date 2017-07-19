@@ -100,7 +100,7 @@ def Playlist(playlist):
         video = yt.filter('mp4')[video_quality]
         print ('Downloading',Downloading ,'/',count, '- ',end=' ')
         print (i.a.text)
-        #video.download(path)
+        video.download(path)
     print ('Congrats :-) You have Downloaded the Playlist Effortlessly! \n')
     
 def type():
