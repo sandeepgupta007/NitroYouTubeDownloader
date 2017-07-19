@@ -101,7 +101,7 @@ def Playlist(playlist):
         print ('Downloading',Downloading ,'/',count, '- ',end=' ')
         print (i.a.text)
         video.download(path)
-    print ('Congrats :-) You have Downloaded the Playlist Effortlessly! \n')
+    print ('\nCongrats :-) You have Downloaded the Playlist Effortlessly! \n')
     
 def type():
     while(True):
@@ -119,7 +119,7 @@ def type():
             print ("Paste your Video URL here: ",end=' ')
             video_url = input()
             download(video_url)
-            print ('Congrats :-) You have Downloaded the Video Effortlessly! \n')
+            print ('\nCongrats :-) You have Downloaded the Video Effortlessly! \n')
         elif(choice == 3):
             print("Paste your Playlist URL here: ",end=' ')
             playlist = input()
@@ -132,8 +132,6 @@ def type():
                 out = True
         if(out == False):
             exit()
-            
-        
 
 def main():       
     print ("*************** Nitro YouTube Downloader **************")
