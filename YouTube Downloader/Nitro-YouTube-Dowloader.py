@@ -82,15 +82,15 @@ def Playlist(playlist):
     page = playlist_url.read()
     page_soup = soup(page,'lxml')
     count = 0
-    video_quality = quality()
-    for i in page_soup.find_all('div',{'class':'content-wrapper'}):
+    for i in page_soup.find_all('td',{'class':'pl-video-title'}):
         count+=1
-    print ('There are',count,'number of videos in Playlist to be downloaded \n')
+    print ('\n There are total',count,'videos in Playlist to be downloaded \n')
+    video_quality = quality()
     print ('Enter Complete Path - ',end=' ')
     path = input()
     os.system('cls')
     Downloading=0
-    for i in page_soup.find_all('div',{'class':'content-wrapper'}):
+    for i in page_soup.find_all('td',{'class':'pl-video-title'}):
         Downloading += 1
         print ('Downloaded - ',end=' ')
         print (int(((Downloading-1)*100)/count),'%')
@@ -98,8 +98,9 @@ def Playlist(playlist):
         URL = "http://www.youtube.com%s"%video
         yt = YouTube(URL)
         video = yt.filter('mp4')[video_quality]
-        print ('Downloading - ',i.a["title"])
-        video.download(path)
+        print ('Downloading',Downloading ,'/',count, '- ',end=' ')
+        print (i.a.text)
+        #video.download(path)
     print ('Congrats :-) You have Downloaded the Playlist Effortlessly! \n')
     
 def type():
