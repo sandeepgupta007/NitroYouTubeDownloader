@@ -27,11 +27,11 @@ def quality():
     print ('*****-> ',end='')
     video_quality = int(input())
     if (video_quality == 1):
-        viedo_quality = 0
+        viedo_quality = -2
     elif(video_quality == 2):
-        video_quality = -2
-    else:
         video_quality = -1
+    else:
+        video_quality = -2
     return video_quality
 
 def download(url):
